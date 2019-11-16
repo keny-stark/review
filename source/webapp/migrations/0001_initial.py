@@ -29,7 +29,7 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=100, verbose_name='name')),
                 ('description', models.TextField(blank=True, max_length=2000, null=True, verbose_name='Description Product')),
                 ('image', models.ImageField(blank=True, null=True, upload_to='product_pics', verbose_name='image')),
-                ('category', models.ForeignKey(default='other', on_delete=django.db.models.deletion.PROTECT, related_name='tracker', to='webapp.Category', verbose_name='Product category')),
+                ('category', models.ForeignKey(default='other', on_delete=django.db.models.deletion.PROTECT, related_name='review', to='webapp.Category', verbose_name='Product category')),
             ],
         ),
         migrations.CreateModel(
