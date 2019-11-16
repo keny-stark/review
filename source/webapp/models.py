@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 class Product(models.Model):
     name = models.CharField(max_length=100, null=False, blank=False, verbose_name='name')
     description = models.TextField(max_length=2000, null=True, blank=True, verbose_name='Description Product')
-    category = models.ForeignKey('webapp.Category', related_name='tracker', on_delete=models.PROTECT,
+    category = models.ForeignKey('webapp.Category', related_name='review', on_delete=models.PROTECT,
                                  verbose_name='Product category', blank=False, null=False, default='other')
     image = models.ImageField(null=True, blank=True, upload_to='product_pics', verbose_name='image')
 
