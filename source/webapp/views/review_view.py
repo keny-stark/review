@@ -49,10 +49,6 @@ class ReviewUpdate(PermissionRequiredMixin, UpdateView):
     permission_required = 'webapp.update_review'
     permission_denied_message = 'poshel von'
 
-    def test_func(self):
-        review = self.get_object()
-        return self.request.user == review.author or self.request.user.is_superuser
-
     def get_success_url(self):
         return reverse('webapp:review_detail', kwargs={'pk': self.object.pk})
 
@@ -65,10 +61,5 @@ class DeleteReview(PermissionRequiredMixin, DeleteView):
     permission_required = 'webapp.update_review'
     permission_denied_message = 'poshel von'
 
-    def test_func(self):
-        review = self.get_object()
-        return self.request.user == review.author or self.request.user.is_superuser
-
     def get_success_url(self):
         return reverse('accounts:login')
-
