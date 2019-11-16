@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block menu %}
+    <li><a href="{% url 'webapp:review_add' %}" class="action-btn">+ Add review +</a></li>
+{% endblock %}
+
+{% block content %}
+        <div class="home_div">
+            {% for reviews in review %}
+                <div class="boss_div">
+                    <h4>{{ reviews.review }}</h4>
+                    <div class="for_button">
+                        <a href="{% url 'webapp:review_detail' reviews.pk %}" class="btn btn1">More >>></a>
+                        <a href="{% url 'webapp:update_review' reviews.pk %}" class="btn btn3">Edit</a>
+                        <a href="{% url 'webapp:delete_review' reviews.pk %}" class="btn btn2">Delete</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+{% endblock %}

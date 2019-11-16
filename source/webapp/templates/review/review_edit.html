@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Update tracker{% endblock %}
+{% block menu %}
+{#    <li><a href="{% url 'webapp:review' review.pk %}" class="action-btn">View</a></li>#}
+{% endblock %}
+{% block content %}
+    <h1>Update tracker</h1>
+    <form method="POST" action="" class="for_form">
+        {% include 'partial/product_reveiw_form.html' with button_text="edit" %}
+    </form>
+{% endblock %}

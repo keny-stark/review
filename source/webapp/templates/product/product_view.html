@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block menu %}
+    {% if perms.webapp.add_product %}
+        <li><a href="{% url 'webapp:product_create' %}" class="action-btn">+ Add product +</a></li>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+        <div class="home_div">
+            {% for product_acti in product %}
+                <div class="boss_div">
+                    <h4>{{ product_acti.name }}</h4>
+                    {% if product_acti.image %}
+                        <img class="avatar" src="{{ product_acti.image.url  }}" width="250" height="250" alt="picture">
+                    {% else %}
+                        <img class="avatar" src="https://brilliant24.ru/files/cat/bg_template_01.png"
+                             width="250" height="250"  alt="picture">
+                    {% endif %}
+                    <div class="for_button">
+                        <a href="{% url 'webapp:product_detail' product_acti.pk %}" class="btn btn1">More >>></a>
+                         {% if perms.webapp.update_product %}
+                            <a href="{% url 'webapp:product_update' product_acti.pk %}" class="btn btn3">Edit</a>
+                        {% endif %}
+                         {% if perms.webapp.delete_product %}
+                            <a href="{% url 'webapp:delete_product' product_acti.pk %}" class="btn btn2">Delete</a>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+{% endblock %}

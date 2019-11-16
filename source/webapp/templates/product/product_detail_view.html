@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ project.title }}{% endblock %}
+
+{% block menu %}
+    <li><a href="{% url "webapp:index" %}" class="action-btn">Product</a></li>
+    {% if perms.webapp.update_product %}
+        <li><a href="{% url "webapp:product_update" product.pk %}" class="action-btn">Edit</a></li>
+        <li><a href="{% url "webapp:delete_product" product.pk %}" class="action-btn">Delete</a></li>
+
+    {% endif %}
+
+
+{% endblock %}
+
+{% block content %}
+    <h1>{{ product.title }}</h1>
+    <h4>{{ product.description }}</h4>
+        <div class="row_image">
+         {% if product.image %}
+             <img class="avatar" src="{{ product.image.url  }}" width="250" height="250" alt="picture">
+         {% else %}
+             <img class="avatar" src="https://brilliant24.ru/files/cat/bg_template_01.png"
+                             width="250" height="250"  alt="picture">
+         {% endif %}
+        </div>
+
+    <hr/>
+    <div class="for_review">
+    <h3>Reveiws</h3>
+        <br>
+        {% for product_acti in product.product_review.all %}
+
+            <div class="tracker_for_project">
+                <h4>{{ product_acti.author }}</h4>
+                <p>{{ product_acti.review }}</p>
+                <p>assessment: {{ product_acti.assessment }}</p>
+                <p class="comment-links">
+                    <a href="{% url 'webapp:review_detail' product_acti.pk %}" class="btn btn2">more >></a>
+                    {% if perms.webapp.update_review or product_acti.author %}
+                        <a href="{% url 'webapp:update_review' product_acti.pk %}" class="btn btn4">Edit</a>
+                        <a href="{% url 'webapp:delete_review' product_acti.pk %}" class="btn btn1">Delete</a>
+                    {% endif %}
+                </p>
+            </div>
+        {% empty %}
+            <p>No product yet.</p>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}Delete Product{% endblock %}
+{% block content %}
+    <form method="POST" action="{% url 'webapp:delete_product' product.pk %}">{% csrf_token %}
+        <h2>Are you sure you want to delete this Product?</h2>
+        <h3>title: {{ product.name }}</h3>
+        <p class="for_text">Description: {{ product.description }}</p>
+        <button type="submit" class="action-btn">Delete</button>
+    </form>
+{% endblock %}
