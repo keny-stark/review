@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Personal Area{% endblock %}
+{% block menu %}
+    <li><a href="{% url "accounts:detail" user_obj.pk %}" class="action-btn">Back</a></li>
+    <li><a href="{% url "accounts:password_change" user_obj.pk %}" class="action-btn">Change Password</a></li>
+{% endblock %}
+{% block content %}
+    <h1>Personal Area</h1>
+    <form action="{% url "accounts:update" user_obj.pk %}" method="post" enctype="multipart/form-data">
+        {% include 'partial/tracker_form.html' %}
+    </form>
+{% endblock %}

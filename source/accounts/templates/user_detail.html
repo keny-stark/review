@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}User{% endblock %}
+{% block menu %}
+    {% if user.pk == user_obj.pk %}
+        <li><a href="{% url "accounts:update" user_obj.pk %}" class="action-btn">Edit</a></li>
+        <li><a href="{% url "accounts:password_change" user_obj.pk %}" class="action-btn">Change Password</a></li>
+    {% endif %}
+{% endblock %}
+{% block content %}
+    <h1>Personal Area</h1>
+    <div class="row_image">
+        <div class="image">
+            {% if user_obj.profile.avatar %}
+                <img class="avatar" src="{{ user_obj.profile.avatar.url }}" width="250" height="250" alt="user picture">
+                {% else %}
+                <img class="avatar" src="../../uploads/admin.png" alt="user picture">
+            {% endif %}
+        </div>
+        <div class="row">
+            <p>Username: {{ user_obj.username }}</p>
+            <p>Name: {{ user_obj.first_name }}</p>
+            <p>Last name: {{ user_obj.last_name }}</p>
+            <p>Date of Birth: {{ user_obj.profile.birth_date|date:'d.m.Y' }}</p>
+            <p>email: {{ user_obj.email }}</p>
+            <p>git: {{ user_obj.profile.site }}</p>
+            <p>about: {{ user_obj.profile.text }}</p>
+        </div>
+    </div>
+{% endblock %}

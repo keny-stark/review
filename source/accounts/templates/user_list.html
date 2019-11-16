@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block menu %}
+{% endblock %}
+
+{% block content %}
+        <div class="home_div">
+            {% for user in users %}
+                <div class="boss_div">
+                    {% if user.profile.avatar %}
+                        <img class="avatar" src="{{ user.profile.avatar.url }}" width="250" height="250" alt="user picture">
+                    {% else %}
+                        <img class="avatar" src="../../uploads/admin.png" alt="user picture">
+                    {% endif %}
+                    <h5>{{ user.email }}</h5>
+                    <h5>{{ user.first_name }}</h5>
+                    <div class="for_button">
+                        <a href="{% url 'accounts:detail' user.pk %}" class="btn btn1">More >>></a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+{% endblock %}

@@ -80,7 +80,7 @@ class UserChangeForm(forms.ModelForm):
         model = User
         fields = ['first_name', 'last_name', 'email', 'avatar', 'birth_date']
         profile_fields = ['avatar', 'birth_date', 'site']
-        labels = {'first_name': 'Имя', 'last_name': 'Фамилия', 'email': 'Email'}
+        labels = {'first_name': 'name', 'last_name': 'last name', 'email': 'Email'}
 
 
 class PasswordChangeForm(forms.ModelForm):
@@ -112,17 +112,3 @@ class PasswordChangeForm(forms.ModelForm):
         model = User
         fields = ['password', 'password_confirm', 'old_password']
 
-
-# class SignUpForm(UserCreationForm):
-#     email = forms.EmailField(required=True, label='Email')
-#
-#     class Meta(UserCreationForm.Meta):
-#         fields = ('username', 'email')
-#
-#     def clean_email(self):
-#         email = self.cleaned_data.get('email')
-#         try:
-#             User.objects.get(email=email)
-#             raise ValidationError('Email already registered.', code='email_registered')
-#         except User.DoesNotExist:
-#             return email
